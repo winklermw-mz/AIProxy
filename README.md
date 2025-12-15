@@ -8,18 +8,20 @@ This project is a **Flask-based API proxy** that provides an OpenAI-compatible i
 - Embeddings (local-only), endpoint `/v1/embeddings`
 - Health checks, endpoint `/v1/heartbeat`
 
-It attempts to use GitHub Models (`openai/gpt-4.1-nano` by default) for inference first and falls back to a local LM Studio–compatible server if GitHub inference fails due to rate limits for example.
+It attempts to use GitHub Models for inference first and falls back to a local LM Studio–compatible server if GitHub inference fails due to rate limits for example.
 
-## Availabe Providers
+## Availabe Model Providers
 
 ### GitHub Models (Primary)
-- Model: `openai/gpt-4.1-nano`
+- Model: `openai/gpt-4.1-nano` (fixed)
 - Endpoint: `https://models.github.ai/inference`
 - Auth: `GITHUB_TOKEN`
 
-### Local Models (Fallback / Embeddings)
-- Chat Completion: `qwen/qwen3-vl-4b`
-- Embeddings: `text-embedding-jina-embeddings-v2-base-de`
+Please note, that embeddings are not available for GitHub models.
+
+### Local Models (Fallback for Chat Completions and Embeddings)
+- Chat Completion: `qwen/qwen3-vl-4b` by default, other models can be selected using the `model` parameter
+- Embeddings: `text-embedding-jina-embeddings-v2-base-de` by default, other models can be selected using the `model` parameter
 - Endpoint: `http://host.docker.internal:1234/v1`
 - Auth: no access token needed
 
@@ -62,7 +64,7 @@ This endpoint accepts `POST` requests of the following form:
 
 ```json
 {
-  "model": "qwen/qwen3-vl-4b",
+  "model": "text-embedding-jina-embeddings-v2-base-de",
   "input": "Some text"
 }
 ```
