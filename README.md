@@ -12,17 +12,17 @@ It attempts to use GitHub Models for inference first and falls back to a local L
 
 ## Availabe Model Providers
 
-### GitHub Models (Primary)
-- Model: `openai/gpt-4.1-nano` (fixed)
+### GitHub
+- Model: `openai/gpt-4.1-nano` (fixed intentionally, i.e. cannot be selected using the `model` parameter)
 - Endpoint: `https://models.github.ai/inference`
 - Auth: `GITHUB_TOKEN`
 
-Please note, that embeddings are not available for GitHub models.
+Please note, that embeddings are not available for GitHub models. Thus, this endpoint always falls back to the local model.
 
-### Local Models (Fallback for Chat Completions and Embeddings)
+### Local Provider
 - Chat Completion: `qwen/qwen3-vl-4b` by default, other models can be selected using the `model` parameter
 - Embeddings: `text-embedding-jina-embeddings-v2-base-de` by default, other models can be selected using the `model` parameter
-- Endpoint: `http://host.docker.internal:1234/v1`
+- Endpoint: `http://localhost:1234/v1`
 - Auth: no access token needed
 
 ## Endpoints
@@ -36,6 +36,8 @@ This endpoint does not take any parameters and accepts both `POST` and `GET` req
   "message": "running"
 }
 ```
+
+Please note, that this service only checks whether the proxy is available, but not whether the model providers are available.
 
 ### Chat Completions
 
