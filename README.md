@@ -22,7 +22,7 @@ Please note, that embeddings are not available for GitHub models. Thus, this end
 ### Local Provider
 - Chat Completion: `qwen/qwen3-vl-4b` by default, other models can be selected using the `model` parameter
 - Embeddings: `text-embedding-jina-embeddings-v2-base-de` by default, other models can be selected using the `model` parameter
-- Endpoint: `http://localhost:1234/v1`
+- Endpoint: `http://localhost:1234/v1`, which is the default endpoint for LM Studio
 - Auth: no access token needed
 
 ## Endpoints
