@@ -13,7 +13,7 @@ It attempts to use GitHub Models for inference first and falls back to a local L
 ## Availabe Model Providers
 
 ### GitHub
-- Model: `openai/gpt-4.1-nano` (fixed intentionally, i.e. cannot be selected using the `model` parameter)
+- Model: `openai/gpt-4.1-nano` by default, other models can be selected using the `model` parameter
 - Endpoint: `https://models.github.ai/inference`
 - Auth: `GITHUB_TOKEN`
 
@@ -45,7 +45,10 @@ This endpoint accepts `POST` requests of the following form:
 
 ```json
 {
-  "model": "qwen/qwen3-vl-4b",
+  "model": {
+    "remote": "openai/gpt-4.1-nano",
+    "local": "qwen/qwen3-vl-4b"
+  },
   "messages": [
     { "role": "system", "content": "You are helpful." },
     { "role": "user", "content": "Hello!" }
