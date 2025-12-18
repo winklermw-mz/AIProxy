@@ -56,6 +56,8 @@ This endpoint accepts `POST` requests of the following form:
 }
 ```
 
+Please note, that in contract to the embeddings' endpoint you can specify both the remote and local model. It is possible to only provide one model as a string: `..."model": "qwen/qwen3-vl-4b"...`. In this case the provided model is treated as the local model, the default remote model `openai/gpt-4.1-nano` is selected automatically.
+
 The result looks like this:
 ```json
 {
@@ -73,6 +75,8 @@ This endpoint accepts `POST` requests of the following form:
   "input": "Some text"
 }
 ```
+
+Because only the local service can create embeddings you can only select the local model.
 
 The result just contains the embedding vector as list of floats.
 ```json
